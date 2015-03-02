@@ -1,10 +1,12 @@
+var tasks = [];
+var taskCounter = 0;
+
 var createDate = function(){
-var date = moment().format("ll")
-$("#date").html(date);
+	var date = moment().format("ll");
+	$("#date").html(date);
 }
 
-var tasks = []
-var taskCounter = 0
+
 
 var createTask = function(data) {
   var newTask = {
@@ -153,6 +155,7 @@ $("btn-remove").click(function(){
 
   $(".completed").on("click",'.btn-remove',function(){  
     $(this).parent("li").remove();
+  })
 })
 
 
@@ -160,25 +163,26 @@ $("btn-remove").click(function(){
 var templates = {};
 var getTemplates = function(){
 
-var allString = $("#all").text()
-templates.allTasks = Handlebars.compile(allString)
+	var allString = $("#all").text()
+	templates.allTasks = Handlebars.compile(allString)
 
-var incompleteString = $("#incomplete").text()
-templates.incompleteTasks = Handlebars.compile(incompleteString)
+	var incompleteString = $("#incomplete").text()
+	templates.incompleteTasks = Handlebars.compile(incompleteString)
 
-var completeString = $("#complete").text()
-templates.completeTasks = Handlebars.compile(completeString)
+	var completeString = $("#complete").text()
+	templates.completeTasks = Handlebars.compile(completeString)
 
-var specificString = $("#specific").text()
-templates.specificTasks = Handlebars.compile(specificString)
+	var specificString = $("#specific").text()
+	templates.specificTasks = Handlebars.compile(specificString)
 }
+
 //When the page loads calls functions
 $(document).on("ready", function(){
-getAllTasks(allTasks)
-getAllTasks(incompleteTasks)
-getAllTasks(completeTasks)
-getTemplates()
-// //specific(2)
-createDate()
+	getAllTasks(allTasks)
+	getAllTasks(incompleteTasks)
+	getAllTasks(completeTasks)
+	getTemplates()
+	// specific(2)
+	createDate()
 
 })
