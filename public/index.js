@@ -1,13 +1,6 @@
 var tasks = [];
 var taskCounter = 0;
 
-var createDate = function(){
-	var date = moment().format("ll");
-	$("#date").html(date);
-}
-
-
-
 var createTask = function(data) {
   var newTask = {
     task: data.task,
@@ -24,6 +17,14 @@ var createTask = function(data) {
 
   return newTask
 }
+
+
+var createDate = function(){
+	var date = moment().format("ll");
+	$("#date").html(date);
+}
+
+
 
 
 
@@ -68,7 +69,23 @@ var incompleteTasks = function(data){
 		     id: steve.id
 		    }
 		    var htmlString = templates.incompleteTasks(allData)
-		    $("#incompleted").append(htmlString)
+		    var $itemHtml = $(htmlString)
+		    $("#incompleted").append($itemHtml)
+
+		    $itemHtml.on("click", function(){
+		    	var id = $(this).attr("data-id")
+		   		
+		   		$.ajax({
+		   			method: "POST",
+		   			//dont forget data for creating task
+		   			url: "/tasks/" + id + "/close",
+		   			success: function(data) {
+		   				window.location.reload(true)
+		   				updateUI()
+
+		   			}
+		   		})
+		    })
 	})
 }
  
@@ -87,7 +104,22 @@ var completeTasks = function(data){
 		     id: steve.id
 		    }
 		    var htmlString = templates.completeTasks(allData)
-		    $("#completed").append(htmlString)
+		    var $itemHtml = $(htmlString)
+		    $("#completed").append($itemHtml)
+		    
+		    $itemHtml.on("click", function(){
+		    	var id = $(this).attr("data-id")
+		   		
+		   		$.ajax({
+		   			method: "POST",
+		   			//dont forget data for creating task
+		   			url: "/tasks/" + id + "/reopen",
+		   			success: function(data) {
+		   				window.location.reload(true)
+		   				updateUI()
+		   			}
+		   		})
+		    })
 	})
 }
 //specfic
@@ -176,12 +208,17 @@ var getTemplates = function(){
 	templates.specificTasks = Handlebars.compile(specificString)
 }
 
-//When the page loads calls functions
-$(document).on("ready", function(){
+var updateUI = function() {
 	getAllTasks(allTasks)
 	getAllTasks(incompleteTasks)
 	getAllTasks(completeTasks)
+}
+
+//When the page loads calls functions
+$(document).on("ready", function(){
 	getTemplates()
+	$('#simple-menu').sidr();
+	updateUI()
 	// specific(2)
 	createDate()
 

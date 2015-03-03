@@ -2,9 +2,20 @@
 	margin: 0;
 	padding:0;
 box-sizing: border-box;
+color: white;
+}
+#simple-menu{
+  text-decoration:none;
+  font-family: 'Rock Salt', cursive;
 }
 body{
 	font-size: 14px;
+
+  
+}
+.big{
+  background: url("intro-bg.jpg");
+  background-size: cover;
 }
 .intro-header {
 width: 100%;
@@ -12,14 +23,10 @@ padding-top: 50px;
 padding-bottom: 50px;
 text-align: center;
 color: #f8f8f8;
-background: url("intro-bg.jpg");
-background-size: cover;
-
 }
 
 .list-wrap{
   margin-left: 25%;
-
 }
 #date,#dateHead{
 	font-family: 'Rock Salt', cursive;
@@ -37,12 +44,22 @@ li {
 
 }
 
-.btn-add, .btn-done, .btn-remove {
+.btn-add, .btn-done, .btn-remove, .btn-search {
   margin-left: 2.5%;
 }
 .title, h2 {
   font-family: 'Rock Salt', cursive;
   margin-bottom: 5%;
+}
+.btn-search {
+color: #fff;
+background-color: #428bca;
+border-color: #357ebd;
+}
+.btn-search:hover{
+color: #fff;
+background-color: #3071a9;
+border-color: #285e8e;
 }
 .btn-add {
 color: #fff;

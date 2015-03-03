@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>TodoRPG</title>
-     
+     <link rel="stylesheet" href="libs/jquery.sidr.dark.css">
      <link href='http://fonts.googleapis.com/css?family=Rock+Salt|Raleway:500' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -16,25 +16,44 @@
 
   </head>
   <body>
-  	<script src="index.js"></script>
-    
+  	
 
    
-    <div class = "container"></div>
-    <div class="intro-header"></div>
+ <div class="big">
+  <a id="simple-menu" href="#sidr"> Click Here For Stats <i class="fa fa-spinner fa-pulse fa-2x"></i></a>
+
+<div id="sidr">
+  <!-- Your content -->
+  <ul>
+    <li><a href="#">EXP</a></li>
+    <li class="active"><a href="#">LEVELS</a></li>
+    <li><a href="#">EXP TO N</a></li>
+    <li><a href="#">Completed</a></li>
+    <li><a href="#">Incompleted</a></li>
+  </ul>
+</div>     
+<div class="intro-header"></div>
 	<div class="list-wrap"> 
         <div class="list-inner-wrap">
         	<h1 class="title">Todo List</h1>
             	<span id="dateHead">Todays Date:</span>
             	<span id="date"></span>
-            	<h3 class="title">Add Task</h2>
+            	
+                <h3 class="title">Search</h3>
             	<input type="text" class="newTask">
             	<button class="btn btn-add">
-            	<i class="fa fa-plus"></i>
-            	<span> Add</span>
+            	<i class="fa fa-search"></i>
+                <span> Search</span>
             	</button>
+               
+                <h3 class="title">Add Task</h3>
+                <input type="text" class="newTask">
+                <button class="btn btn-add">
+                <i class="fa fa-plus"></i>
+                <span> Add</span>
+                </button>
 
-        	<h3 class="title">To Do</h2>
+        	<h3 class="title">To Do</h3>
             	<ul id="incompleted">
             	<li>Need to be completed task<button class="btn btn-done">
             	<i class="fa fa-check"></i>
@@ -42,22 +61,24 @@
             	</button></li>
             	</ul>
 
-        	<h3 class="title">Completed Tasks</h2>
+        	<h3 class="title">Completed Tasks</h3>
             	<ul id="completed">
             	<li>Completed Task<button class="btn btn-remove">
             	<i class="fa fa-times"></i>
-            	<span> Remove</span>
+            	<span> Undo</span>
             	</button></li>
             	</ul>
         </div>
        
     </div>
+</div>
 
-
-
+<script src="index.js"></script>      
+    <script src="libs/jquery.sidr.min.js"></script>
+ 
     
     <script type="x-handlebars-template" id="incomplete">
-        <li class="task">{{task}}<button class="btn btn-done">
+        <li data-id="{{id}}" class="task">{{task}}<button class="btn btn-done">
             <i class="fa fa-check"></i>
             <span> Done</span>
             </button>
@@ -65,9 +86,9 @@
     </script>
     
     <script type="x-handlebars-template" id="complete">
-        <li class="task">{{task}}<button class="btn btn-remove">
+        <li data-id="{{id}}" class="task">{{task}}<button class="btn btn-remove">
             <i class="fa fa-times"></i>
-            <span> Done</span>
+            <span> Undo</span>
             </button>
         </li>
    </script>
