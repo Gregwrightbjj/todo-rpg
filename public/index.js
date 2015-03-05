@@ -173,15 +173,7 @@ var reopen = function(id) {
 
 
 
-$("btn-add").click(function(){
 
-
-})
-
-$("btn-done").click(function(){
-
-  
-})
 
 $("btn-remove").click(function(){
 

@@ -2,25 +2,23 @@
 <html>
   <head>
     <title>TodoRPG</title>
-     <link rel="stylesheet" href="libs/jquery.sidr.dark.css">
-     <link href='http://fonts.googleapis.com/css?family=Rock+Salt|Raleway:500' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script src="libs/underscore.js"></script>
     <script src="libs/jquery.js"></script>
     <script src="libs/handlebars.js"></script>
-    <script src="libs/underscore.js"></script>
     <script src="libs/moment.js"></script>
- 
+    <script src="libs/backbone.js"></script>
+    
 
-
+    <link href='http://fonts.googleapis.com/css?family=Rock+Salt|Raleway:500' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="libs/sidr.dark.css">
   </head>
   <body>
   	
-
    
  <div class="big">
-  <a id="simple-menu" href="#sidr"> Click Here For Stats <i class="fa fa-spinner fa-pulse fa-2x"></i></a>
+    <a id="simple-menu" href="#sidr"> Click Here For Stats <i class="fa fa-spinner fa-pulse fa-2x"></i></a>
 
 <div id="sidr">
   <!-- Your content -->
@@ -31,7 +29,8 @@
     <li><a href="#">Completed</a></li>
     <li><a href="#">Incompleted</a></li>
   </ul>
-</div>     
+</div>   
+    
 <div class="intro-header"></div>
 	<div class="list-wrap"> 
         <div class="list-inner-wrap">
@@ -47,8 +46,8 @@
             	</button>
                
                 <h3 class="title">Add Task</h3>
-                <input type="text" class="newTask">
-                <button class="btn btn-add">
+                <input type="text" id="add-title"class="newTask">
+                <button id="btn-add"class="btn btn-add">
                 <i class="fa fa-plus"></i>
                 <span> Add</span>
                 </button>
@@ -73,8 +72,7 @@
     </div>
 </div>
 
-<script src="index.js"></script>      
-    <script src="libs/jquery.sidr.min.js"></script>
+     
  
     
     <script type="x-handlebars-template" id="incomplete">
@@ -104,6 +102,8 @@
     </div>
     </script>
 
+    <script src="backbone.js"></script> 
+    <script src="libs/sidr.min.js"></script>
 
   </body>
 </html>
