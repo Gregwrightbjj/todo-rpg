@@ -11,6 +11,7 @@ var tasks = Backbone.Model.extend({
 
 		}
 	}
+
 	
 })
 
@@ -23,9 +24,7 @@ var List = Backbone.Collection.extend({
 
 //list functions 
 var updateUI = function(){
-$("#incompleted").html("")
-$("#completed").html("")
-
+getTemplates()
 incomplete(list)
 complete(list)
 }
@@ -50,7 +49,16 @@ var complete= function(ok) {
 		    $("#completed").append($itemHtml)
 		    $itemHtml.on("click", function(){
 		    	var id = $(this).attr("data-id")
-		   		
+		   		$.ajax({
+		   			method: "POST",
+		   			//dont forget data for creating task
+		   			url: "/tasks/" + id + "/reopen",
+		   			success: function(data) {
+		   				window.location.reload(true)
+		   				updateUI()
+
+		   			}
+		   		})
 		   		})
 		    })
   
@@ -80,14 +88,14 @@ _.each(incomp, function(steve){
 		   			//dont forget data for creating task
 		   			url: "/tasks/" + id + "/close",
 		   			success: function(data) {
-		   				
+		   				window.location.reload(true)
 		   				updateUI()
 
 		   			}
 		   		})
 		   		})
     })
-    console.log(incomp) 
+    
     return incomp
 
 }
@@ -96,14 +104,14 @@ _.each(incomp, function(steve){
   var title = $("#add-title").val()
   
 
-  var task = new Task({
+  var task = new tasks({
     task: title,
     complete: false
     
   })
-
+console.log(task)
   if (task.isValid() === true) {
-    store.add(beer)
+    list.add(task)
 
     task.save({}, {
       complete: updateUI
@@ -137,7 +145,7 @@ var getTemplates= function(){
 }
 
 $(document).on("ready", function(){
-	getTemplates()
+getTemplates()
 	list.fetch({
 		success:function(){
 			updateUI()

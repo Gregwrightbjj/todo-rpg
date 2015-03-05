@@ -6,7 +6,7 @@
     <script src="libs/jquery.js"></script>
     <script src="libs/handlebars.js"></script>
     <script src="libs/moment.js"></script>
-    <script src="libs/backbone.js"></script>
+    <script src="index.js"></script>
     
 
     <link href='http://fonts.googleapis.com/css?family=Rock+Salt|Raleway:500' rel='stylesheet' type='text/css'>
@@ -25,47 +25,45 @@
   <ul>
     <li><a href="#">EXP</a></li>
     <li class="active"><a href="#">LEVELS</a></li>
-    <li><a href="#">EXP TO N</a></li>
-    <li><a href="#">Completed</a></li>
-    <li><a href="#">Incompleted</a></li>
+    <li><a href="#">EXP TO Next</a></li>
+    <li><a href="#">Completed:<span id="ccount"></span></a></li>
+    <li><a href="#">Incompleted:<span id="icount"></span></a></li>
   </ul>
 </div>   
     
-<div class="intro-header"></div>
+
 	<div class="list-wrap"> 
         <div class="list-inner-wrap">
         	<h1 class="title">Todo List</h1>
             	<span id="dateHead">Todays Date:</span>
             	<span id="date"></span>
             	
+            <div class="search">
                 <h3 class="title">Search</h3>
             	<input type="text" class="newTask">
             	<button class="btn btn-add">
             	<i class="fa fa-search"></i>
                 <span> Search</span>
             	</button>
-               
+            </div>
+            
+            <div class="add">
                 <h3 class="title">Add Task</h3>
                 <input type="text" id="add-title"class="newTask">
                 <button id="btn-add"class="btn btn-add">
                 <i class="fa fa-plus"></i>
                 <span> Add</span>
                 </button>
-
-        	<h3 class="title">To Do</h3>
+            </div>
+        	
+            <h3 class="title">To Do</h3>
             	<ul id="incompleted">
-            	<li>Need to be completed task<button class="btn btn-done">
-            	<i class="fa fa-check"></i>
-            	<span> Done</span>
-            	</button></li>
+            	
             	</ul>
 
         	<h3 class="title">Completed Tasks</h3>
             	<ul id="completed">
-            	<li>Completed Task<button class="btn btn-remove">
-            	<i class="fa fa-times"></i>
-            	<span> Undo</span>
-            	</button></li>
+            	
             	</ul>
         </div>
        
@@ -84,25 +82,30 @@
     </script>
     
     <script type="x-handlebars-template" id="complete">
-        <li data-id="{{id}}" class="task">{{task}}<button class="btn btn-remove">
-            <i class="fa fa-times"></i>
-            <span> Undo</span>
+        <li data-id="{{id}}" class="task">{{task}}
+             <button data-id="{{id}}"class="btn btn-undo">
+                <i class="fa fa-times"></i>
+                <span> Undo</span>
+            </button>
+            <button class="btn btn-remove">
+                <i class="fa fa-times"></i>
+                <span> Delete</span>
             </button>
         </li>
    </script>
 
 
     <script type="x-handlebars-template" id="all">
-    <div class="allFolder">
-    <div class="task">{{task}}</div>
-    <div class="value">Value: {{value}}</div>
-    <div class="complete">Complete: {{complete}}</div>
-    <div class="createdAt">Created: {{createdAt}}</div>
-    <div class="id">ID: {{id}}</div>
-    </div>
+        <div class="allFolder">
+            <div class="task">{{task}}</div>
+            <div class="value">Value: {{value}}</div>
+            <div class="complete">Complete: {{complete}}</div>
+            <div class="createdAt">Created: {{createdAt}}</div>
+            <div class="id">ID: {{id}}</div>
+        </div>
     </script>
 
-    <script src="backbone.js"></script> 
+    
     <script src="libs/sidr.min.js"></script>
 
   </body>

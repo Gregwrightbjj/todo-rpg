@@ -1,40 +1,46 @@
 var tasks = [];
 var taskCounter = 0;
 
-var createTask = function(data) {
-  var newTask = {
-    task: data.task,
-    value: data.value,
-    complete: false,
-    createdAt: new Date()
-  }
-
-  taskCounter++
-
-  newTask.id = (taskCounter).toString()
-
-  tasks.push(newTask)
-
-  return newTask
-}
-
-
+//date
 var createDate = function(){
 	var date = moment().format("ll");
 	$("#date").html(date);
 }
 
+//stats
+var completeTasksCount = function() {
 
+  $.ajax({
+    url: "/tasks/complete",
+    method: "GET",
+    success: function(data) {
+     a = data.length,
+     $("#ccount").text(a),
+     console.log(a)
+    }
+  })
 
+}
 
+var incompleteTasksCount = function() {
 
+  $.ajax({
+    url: "/tasks/incomplete",
+    method: "GET",
+    success: function(data) {
+      a = data.length
+      $("#icount").text(a)
+      console.log(a)
+    }
+  })
+
+}
 
 var getAllTasks = function(callback){
 	$.ajax({
 	    url: "/tasks",
 	    method: "GET",
 	    success: function(data){
-	      console.log(data)
 	      callback(data)
 		}
 	 })
@@ -59,7 +65,7 @@ var incompleteTasks = function(data){
   var incomplete = _.filter(data, function(task){
       return (task.complete === false)
   })
-  console.log("i", incomplete)
+  	console.log("i",incomplete)
   _.each(incomplete, function(steve){
 		   var allData = {
 			 task: steve.task,
@@ -89,7 +95,7 @@ var incompleteTasks = function(data){
 	})
 }
  
-// get completecomplete
+// get complete
 var completeTasks = function(data){
   var complete = _.filter(data, function(task){
       return (task.complete === true)
@@ -107,7 +113,7 @@ var completeTasks = function(data){
 		    var $itemHtml = $(htmlString)
 		    $("#completed").append($itemHtml)
 		    
-		    $itemHtml.on("click", function(){
+		    $itemHtml.find(".btn-undo").on("click", function(){
 		    	var id = $(this).attr("data-id")
 		   		
 		   		$.ajax({
@@ -144,34 +150,24 @@ var specific = function(id){
   })
 }
 
- //make complete 
- var close= function(id) {
- 	getAllTasks(function(data){
- 		var task = u.find(tasks, function(task){
-      return (task.id === id)
-    })
+//adding new cupcake
+$("#btn-add").on("click", function(){
+	var title = $(".add-title").val()
+	
+	$.ajax({
+		method: "PUT",
+		data:{
+			task: title,
+			
+		},
+		url: "/tasks" ,
+		success: function(data) {
+		window.location.reload(true)
+		updateUI()
+		}
+	})
+	
 })
-    task.complete = true
-    task.reopenedAt = new Date()
-
-    return task
- 	
- }
-
-//make incomplete
-var reopen = function(id) {
-   getAllTasks(function(data){
-   	var task = u.find(data, function(task){
-      return (task.id === id)
-    })
-   })
-     task.complete = false
-    task.reopenedAt = new Date()
-
-    return task
-  }
-
-
 
 
 
@@ -201,9 +197,11 @@ var getTemplates = function(){
 }
 
 var updateUI = function() {
-	getAllTasks(allTasks)
+	//getAllTasks(allTasks)
 	getAllTasks(incompleteTasks)
 	getAllTasks(completeTasks)
+	incompleteTasksCount()
+	completeTasksCount()
 }
 
 //When the page loads calls functions
@@ -211,7 +209,6 @@ $(document).on("ready", function(){
 	getTemplates()
 	$('#simple-menu').sidr();
 	updateUI()
-	// specific(2)
 	createDate()
 
 })
