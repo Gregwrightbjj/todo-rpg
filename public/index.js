@@ -35,7 +35,26 @@ var incompleteTasksCount = function() {
   })
 
 }
+var getStats= function() {
 
+  $.ajax({
+    url: "/stats",
+    method: "GET",
+    success: function(data) {
+    console.log(data)
+    a = data.experience
+    b = data.level
+    c = data.expToNextLevel
+    d = numeral(data.percentComplete).format("0%")
+    $("#exp").html(a);
+    $("#level").html(b);
+    $("#expTo").html(c);
+    $("#pComplete").html(d);
+    }
+  })
+
+}
+//tasks
 var getAllTasks = function(callback){
 	$.ajax({
 	    url: "/tasks",
@@ -202,6 +221,7 @@ var updateUI = function() {
 	getAllTasks(completeTasks)
 	incompleteTasksCount()
 	completeTasksCount()
+	getStats()
 }
 
 //When the page loads calls functions

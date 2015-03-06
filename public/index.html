@@ -7,7 +7,7 @@
     <script src="libs/handlebars.js"></script>
     <script src="libs/moment.js"></script>
     <script src="index.js"></script>
-    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Rock+Salt|Raleway:500' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="index.css">
@@ -23,10 +23,11 @@
 <div id="sidr">
   <!-- Your content -->
   <ul>
-    <li><a href="#">EXP</a></li>
-    <li class="active"><a href="#">LEVELS</a></li>
-    <li><a href="#">EXP TO Next</a></li>
+    <li><a href="#">EXP:<span id="exp"></a></li>
+    <li class="active"><a href="#">LEVEL:<span id="level"></a></li>
+    <li><a href="#">EXP TO Next:<span id="expTo"></a></li>
     <li><a href="#">Completed:<span id="ccount"></span></a></li>
+    <li><a href="#">% Completed:<span id="pComplete"></a></li>
     <li><a href="#">Incompleted:<span id="icount"></span></a></li>
   </ul>
 </div>   
@@ -83,14 +84,11 @@
     
     <script type="x-handlebars-template" id="complete">
         <li data-id="{{id}}" class="task">{{task}}
-             <button data-id="{{id}}"class="btn btn-undo">
+            <span> <button data-id="{{id}}"class="btn btn-undo">
                 <i class="fa fa-times"></i>
                 <span> Undo</span>
-            </button>
-            <button class="btn btn-remove">
-                <i class="fa fa-times"></i>
-                <span> Delete</span>
-            </button>
+            </button></span>
+           
         </li>
    </script>
 
