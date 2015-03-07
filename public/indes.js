@@ -2,7 +2,12 @@ var templates = {};
 var notDone; 
 var done; 
 
-
+var getTemplates = function() {
+  templates = {
+    todo: Handlebars.compile( $("#incomplete").text() ),
+    done: Handlebars.compile( $("#complete").text() )
+  }
+}
 
 
 var createDate = function(){
@@ -58,12 +63,6 @@ var getStats= function() {
 
 }
 
-var getTemplates = function() {
-  templates = {
-    todo: Handlebars.compile( $("#incomplete").text() ),
-    done: Handlebars.compile( $("#complete").text() )
-  }
-}
 
 var createViews1 = function() {
   notDone.each(function(task){
@@ -111,9 +110,9 @@ $(document).on("ready", function(){
   incompleteTasksCount()
   completeTasksCount()
   getStats()
-  $('#simple-menu').sidr()
+  $('#simple-menu').sidr();
 
-  notDone = new TodoList()
+  notDone = new List()
   done = new CompleteList()
 
 
@@ -126,3 +125,5 @@ $(document).on("ready", function(){
   })
 
 })
+
+

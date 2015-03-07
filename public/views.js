@@ -24,7 +24,7 @@ var Task = Backbone.Model.extend({
 
 })
 
-var TodoList = Backbone.Collection.extend({
+var List = Backbone.Collection.extend({
 
   model: Task,
 
