@@ -1,5 +1,10 @@
 var templates = {};
-var tasks;
+var notDone; 
+var done; 
+
+
+
+
 var createDate = function(){
   var date = moment().format("ll");
   $("#date").html(date);
@@ -60,11 +65,10 @@ var getTemplates = function() {
   }
 }
 
-var createViews = function() {
-  tasks.filter(function(task){
+var createViews1 = function() {
+  notDone.each(function(task){
     
-     
-  console.log(task.toJSON().id === "1")
+     console.log(task)
 
     var view = new todoView(task)
     $("#incompleted").append(view.$el)
@@ -72,6 +76,16 @@ var createViews = function() {
   })
 }
 
+var createViews2 = function() {
+  done.each(function(task){
+    
+     console.log(task)
+
+    var view = new doneView(task)
+    $("#completed").append(view.$el)
+
+  })
+}
 
 
 
@@ -81,7 +95,7 @@ $("#btn-add").on("click", function(){
     value: $("#new-task-value").val()
   }
 
-  tasks.create(data, {
+  notDone.create(data, {
     success: function(newModel) {
       var view = new TaskView(newModel)
       $("#incompleted").append(view.$el)
@@ -89,18 +103,26 @@ $("#btn-add").on("click", function(){
   })
 })
 
+
+
 $(document).on("ready", function(){
 
   getTemplates()
   incompleteTasksCount()
   completeTasksCount()
   getStats()
-  $('#simple-menu').sidr();
+  $('#simple-menu').sidr()
 
-  tasks = new TaskCollection()
+  notDone = new TodoList()
+  done = new CompleteList()
 
-  tasks.fetch({
-    success: createViews
+
+  notDone.fetch({
+    success: createViews1
+  })
+
+  done.fetch({
+    success: createViews2
   })
 
 })

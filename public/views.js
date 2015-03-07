@@ -24,7 +24,21 @@ var Task = Backbone.Model.extend({
 
 })
 
-var TaskCollection = Backbone.Collection.extend({
+var TodoList = Backbone.Collection.extend({
+
+  model: Task,
+
+  url: "/tasks/incomplete"
+
+})
+var CompleteList = Backbone.Collection.extend({
+
+  model: Task,
+
+  url: "/tasks/complete"
+
+})
+var AllList = Backbone.Collection.extend({
 
   model: Task,
 
@@ -32,11 +46,48 @@ var TaskCollection = Backbone.Collection.extend({
 
 })
 
+
+//not done list
 var todoView = Backbone.View.extend({
 
   events: {
     "click .btn-done": "clickedComplete",
     "click .btn-undo": "clickedReopen"
+  },
+
+  clickedComplete: function() {
+    this.model.close()
+  },
+
+  clickedReopen: function() {
+    this.model.reopen()
+
+
+  tagName: "div",
+
+  className: "task-container",
+
+  initialize: function(taskModel){
+    this.model = taskModel
+
+    this.listenTo(this.model, "change", this.render)
+
+    this.render()
+  },
+
+  render: function() {
+    this.$el.html( templates.todo(this.model.toJSON()) )
+  }
+
+})
+
+
+//done view
+var doneView = Backbone.View.extend({
+
+  events: {
+    "click #btn-done": "clickedComplete",
+    "click #btn-undo": "clickedReopen"
   },
 
   clickedComplete: function() {
@@ -60,14 +111,12 @@ var todoView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html( templates.todo(this.model.toJSON()) )
+    this.$el.html( templates.done(this.model.toJSON()) )
   }
 
 })
-
-
-
-var doneView = Backbone.View.extend({
+//all view
+var View = Backbone.View.extend({
 
   events: {
     "click #btn-done": "clickedComplete",

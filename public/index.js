@@ -217,8 +217,7 @@ var getTemplates = function(){
 
 var updateUI = function() {
 	//getAllTasks(allTasks)
-	getAllTasks(incompleteTasks)
-	getAllTasks(completeTasks)
+	
 	incompleteTasksCount()
 	completeTasksCount()
 	getStats()
@@ -228,7 +227,7 @@ var updateUI = function() {
 $(document).on("ready", function(){
 	getTemplates()
 	$('#simple-menu').sidr();
-	updateUI()
+	
 	createDate()
 
 })
