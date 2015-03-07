@@ -4,8 +4,8 @@ var done;
 
 var getTemplates = function() {
   templates = {
-    todo: Handlebars.compile( $("#incomplete").text() ),
-    done: Handlebars.compile( $("#complete").text() )
+    todo: Handlebars.compile( $("#incomplete-template").text() ),
+    done: Handlebars.compile( $("#complete-template").text() )
   }
 }
 

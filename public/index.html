@@ -9,7 +9,7 @@
     <script src="libs/handlebars.js"></script>
     <script src="libs/backbone.js"></script>
 
-    
+
 
     
     <script src="libs/moment.js"></script>
@@ -83,7 +83,7 @@
     <script src="indes.js"></script>
  
     
-    <script type="x-handlebars-template" id="incomplete">
+    <script type="x-handlebars-template" id="incomplete-template">
         <li data-id="{{id}}" class="task">{{task}}<button class="btn btn-done">
             <i class="fa fa-check"></i>
             <span> Done</span>
@@ -91,7 +91,7 @@
         </li>
     </script>
     
-    <script type="x-handlebars-template" id="complete">
+    <script type="x-handlebars-template" id="complete-template">
         <li data-id="{{id}}" class="task">{{task}}
             <span> <button data-id="{{id}}"class="btn btn-undo">
                 <i class="fa fa-times"></i>
@@ -102,7 +102,7 @@
    </script>
 
 
-    <script type="x-handlebars-template" id="all">
+    <script type="x-handlebars-template" id="all-template">
         <div class="allFolder">
             <div class="task">{{task}}</div>
             <div class="value">Value: {{value}}</div>
