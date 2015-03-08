@@ -63,9 +63,9 @@ var getStats= function() {
 
 }
 
-
+//create views for 
 var createViews1 = function() {
-  notDone.each(function(task){
+  notDone.each( function(task){
     
      console.log(task)
 

@@ -61,7 +61,7 @@ var todoView = Backbone.View.extend({
 
   clickedReopen: function() {
     this.model.reopen()
-
+  },
 
   tagName: "div",
 
@@ -86,8 +86,8 @@ var todoView = Backbone.View.extend({
 var doneView = Backbone.View.extend({
 
   events: {
-    "click #btn-done": "clickedComplete",
-    "click #btn-undo": "clickedReopen"
+    "click .btn-done": "clickedComplete",
+    "click .btn-undo": "clickedReopen"
   },
 
   clickedComplete: function() {
