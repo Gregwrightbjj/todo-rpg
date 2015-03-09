@@ -105,12 +105,13 @@ $("#btn-add").on("click", function(){
 
 
 $(document).on("ready", function(){
-
+  createDate()
   getTemplates()
   incompleteTasksCount()
   completeTasksCount()
   getStats()
   $('#simple-menu').sidr();
+
 
   notDone = new List()
   done = new CompleteList()
