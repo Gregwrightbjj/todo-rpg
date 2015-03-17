@@ -89,17 +89,28 @@ var createViews2 = function() {
 
 
 $("#btn-add").on("click", function(){
-  var data = {
-    task: $("#add-title").val(),
-    value: $("#new-task-value").val()
-  }
+  // var data = {
+  //   task: $("#add-title").val(),
+  // }
+var Title = $("#add-title").val()
+$.ajax({
+      url: "/tasks",
+      method: "POST",
+      data: {
+        task: Title,
+      },
+      success: function(updatedTask) {
+        console.log(updatedTask)
+      }
+    })
 
-  notDone.create(data, {
-    success: function(newModel) {
-      var view = new TaskView(newModel)
-      $("#incompleted").append(view.$el)
-    }
-  })
+  // location.reload()
+  // notDone.create(data, {
+  //   success: function(newModel) {
+  //     var view = new TaskView(newModel)
+  //     $("#incompleted").append(view.$el)
+  //   }
+  // })
 })
 
 

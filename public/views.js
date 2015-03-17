@@ -52,11 +52,12 @@ var todoView = Backbone.View.extend({
 
   events: {
     "click .btn-done": "clickedComplete",
-    "click .btn-undo": "clickedReopen"
+     
   },
 
   clickedComplete: function() {
     this.model.close()
+    
   },
 
   clickedReopen: function() {
