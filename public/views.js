@@ -1,6 +1,7 @@
 var Task = Backbone.Model.extend({
 
   close: function() {
+    
     $.ajax({
       url: "/tasks/" + this.id + "/close",
       method: "POST",
@@ -9,6 +10,7 @@ var Task = Backbone.Model.extend({
         this.set(updatedTask)
       }
     })
+    update()
   },
 
   reopen: function() {
@@ -20,9 +22,23 @@ var Task = Backbone.Model.extend({
         this.set(updatedTask)
       }
     })
+  update()
   },
 
 })
+
+var update = function(){
+  $("#incompleted").html("")
+  $("#completed").html("")
+    notDone.fetch({
+    success: createViews1
+      }) 
+
+    done.fetch({
+    success: createViews2
+  })
+   
+}
 
 var List = Backbone.Collection.extend({
 

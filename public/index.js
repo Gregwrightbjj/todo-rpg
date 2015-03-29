@@ -89,9 +89,7 @@ var createViews2 = function() {
 
 
 $("#btn-add").on("click", function(){
-  // var data = {
-  //   task: $("#add-title").val(),
-  // }
+ 
 var Title = $("#add-title").val()
 $.ajax({
       url: "/tasks",
@@ -103,14 +101,9 @@ $.ajax({
         console.log(updatedTask)
       }
     })
+  $("#add-title").val("")
 
-  // location.reload()
-  // notDone.create(data, {
-  //   success: function(newModel) {
-  //     var view = new TaskView(newModel)
-  //     $("#incompleted").append(view.$el)
-  //   }
-  // })
+
 })
 
 
