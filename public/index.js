@@ -103,10 +103,21 @@ $.ajax({
     })
   $("#add-title").val("")
 
-
+  update()
 })
 
+var update = function(){
+  $("#incompleted").html("")
+  $("#completed").html("")
+    notDone.fetch({
+    success: createViews1
+      }) 
 
+    done.fetch({
+    success: createViews2
+  })
+   
+}
 
 $(document).on("ready", function(){
   createDate()
