@@ -1,5 +1,14 @@
 ## Todo RPG
 
+
+## Instructions
+
+1. `npm install`
+2. `npm start`
+
+The application will be running on http://localhost:3000 and serving static assets out of /public.
+
+
 ### Description
 
 This project is going to bring together the major concepts from both this week and previous weeks and serve as the capstone for "vanilla" JavaScript.
